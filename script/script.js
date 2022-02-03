@@ -26,8 +26,8 @@ function showCards(number) {
 
     for(i = 0; i < number; i++){
         board.innerHTML += `<li class="card ${i}" onclick="flipCard(${i})">
-                                <p class="front-face face  ${cards[i]}"></p>
-                                <p class="back-face face  ${cards[i]}">
+                                <p class="front-face face"></p>
+                                <p class="back-face face">
                                     ${cards[i]}
                                 </p>
                             </li>`;
@@ -46,34 +46,35 @@ function flipCard(card) {
     front.style.transform = "rotateY(-180deg)"
     back.style.transform = "rotateY(0deg)"
 
-    chooseCard(back.innerText)
+    chooseCard(back.innerText, card)
 }
 
-function chooseCard(value) {
+function chooseCard(value, cardPosition) {
     turn = !turn
 
     if(turn) {
-        firstFlipped = value;
+        firstFlipped = [value, cardPosition];
         return
     }
-    secondFlipped = value;
+    secondFlipped = [value, cardPosition];
     matchCards()
 }
 
 function matchCards() {
-    if(typeof(firstFlipped) != "boolean" && typeof(secondFlipped) != "boolean") {
-        if(firstFlipped != secondFlipped) {
+    if (typeof(firstFlipped[0]) != "boolean" && typeof(secondFlipped[0]) != "boolean") {
+        if (firstFlipped[0] != secondFlipped[0]) {
             setTimeout(() => {
-                document.getElementsByClassName(`front-face ${firstFlipped}`)[0].style.transform = "rotateY(0deg)"
-                document.getElementsByClassName(`back-face ${firstFlipped}`)[0].style.transform = "rotateY(-180deg)"
+                const cardOne = document.getElementsByClassName(`card`)[firstFlipped[1]];
+                const cardTwo = document.getElementsByClassName(`card`)[secondFlipped[1]];
 
-                document.getElementsByClassName(`front-face ${secondFlipped}`)[0].style.transform = "rotateY(0deg)"
-                document.getElementsByClassName(`back-face ${secondFlipped}`)[0].style.transform = "rotateY(-180deg)"
+                cardOne.querySelector(`.front-face`).style.transform = "rotateY(0deg)";
+                cardOne.querySelector(`.back-face`).style.transform = "rotateY(-180deg)";
+
+                cardTwo.querySelector(`.front-face`).style.transform = "rotateY(0deg)";
+                cardTwo.querySelector(`.back-face`).style.transform = "rotateY(-180deg)";
             }, 2000)
             
-        }else {
-            console.log("yes")
-
+        } else {
             firstFlipped = false;
             secondFlipped = false;
         }
