@@ -39,10 +39,11 @@ function shuffle() {
 }
 
 function flipCard(card) {
-    const boardCards = document.getElementsByClassName(`card ${card}`)
-    const front = boardCards[0].querySelector(`.front-face`);
-    const back = boardCards[0].querySelector(`.back-face`);
+    const boardCard = document.getElementsByClassName(`card ${card}`)
+    const front = boardCard[0].querySelector(`.front-face`);
+    const back = boardCard[0].querySelector(`.back-face`);
 
+    boardCard[0].style.pointerEvents = "none";
     front.style.transform = "rotateY(-180deg)"
     back.style.transform = "rotateY(0deg)"
 
@@ -61,20 +62,25 @@ function chooseCard(value, cardPosition) {
 }
 
 function matchCards() {
-    if (typeof(firstFlipped[0]) != "boolean" && typeof(secondFlipped[0]) != "boolean") {
+    if (typeof(firstFlipped[0]) && typeof(secondFlipped[0])) {
+        const cardOne = document.getElementsByClassName(`card`)[firstFlipped[1]];
+        const cardTwo = document.getElementsByClassName(`card`)[secondFlipped[1]];
+
         if (firstFlipped[0] != secondFlipped[0]) {
             setTimeout(() => {
-                const cardOne = document.getElementsByClassName(`card`)[firstFlipped[1]];
-                const cardTwo = document.getElementsByClassName(`card`)[secondFlipped[1]];
-
                 cardOne.querySelector(`.front-face`).style.transform = "rotateY(0deg)";
                 cardOne.querySelector(`.back-face`).style.transform = "rotateY(-180deg)";
+                cardOne.style.pointerEvents = "all";
 
                 cardTwo.querySelector(`.front-face`).style.transform = "rotateY(0deg)";
                 cardTwo.querySelector(`.back-face`).style.transform = "rotateY(-180deg)";
-            }, 2000)
+                cardTwo.style.pointerEvents = "all";
+            }, 1000)
             
         } else {
+            cardOne.style.pointerEvents = "none";
+            cardTwo.style.pointerEvents = "none";
+            
             firstFlipped = false;
             secondFlipped = false;
         }
