@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100&family=Roboto:wght@400&display=swap');
+
+body {
+    background-color: #EEF9BF;
+}
+
+h1 {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 56px;
+    line-height: 66px;
+    letter-spacing: -0.004em;
+
+    color: #75B79E;
+    margin: 40px auto;
+    text-align: center;
+}
+
+.board {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+
+    padding: 40px;
+}
+
+.card {
+    width: 117px;
+    height: 146px;
+
+    background: #A7E9AF;
+    background-image: url(../assets/parrot.svg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    border: 1px solid #99CEA8;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
