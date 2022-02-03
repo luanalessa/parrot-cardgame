@@ -50,12 +50,18 @@ h1 {
 
 .back-face {
     transform: rotateY(180deg);
+    font-size: 100px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
 }
 
-.card:hover .back-face {
+/* .card:hover .back-face {
     transform: rotateY(0deg);
 }
 
 .card:hover .front-face {
     transform: rotateY(-180deg);
-}
+} */
+
