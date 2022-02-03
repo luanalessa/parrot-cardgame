@@ -58,6 +58,7 @@ function chooseCard(value, cardPosition) {
         return
     }
     secondFlipped = [value, cardPosition];
+
     matchCards()
 }
 
@@ -67,6 +68,7 @@ function matchCards() {
         const cardTwo = document.getElementsByClassName(`card`)[secondFlipped[1]];
 
         if (firstFlipped[0] != secondFlipped[0]) {
+            
             setTimeout(() => {
                 cardOne.querySelector(`.front-face`).style.transform = "rotateY(0deg)";
                 cardOne.querySelector(`.back-face`).style.transform = "rotateY(-180deg)";
