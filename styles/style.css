@@ -11,7 +11,6 @@ h1 {
     font-size: 56px;
     line-height: 66px;
     letter-spacing: -0.004em;
-
     color: #75B79E;
     margin: 40px auto;
     text-align: center;
@@ -21,20 +20,42 @@ h1 {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 10px;
-
+    gap: 20px;
     padding: 40px;
 }
 
 .card {
     width: 117px;
     height: 146px;
+    position: relative;
+    cursor: pointer;
+}
 
+.face {
+    width: 100%;
+    height: 100%;
     background: #A7E9AF;
+    border: 1px solid #99CEA8;
+    position: absolute;
+    backface-visibility: hidden;
+    transition: all .5s;
+    transform-style: preserve-3d;
+}
+
+.front-face {
     background-image: url(../assets/parrot.svg);
     background-position: center center;
     background-repeat: no-repeat;
-    border: 1px solid #99CEA8;
-    box-sizing: border-box;
-    border-radius: 5px;
+}
+
+.back-face {
+    transform: rotateY(180deg);
+}
+
+.card:hover .back-face {
+    transform: rotateY(0deg);
+}
+
+.card:hover .front-face {
+    transform: rotateY(-180deg);
 }
